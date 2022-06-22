@@ -19,7 +19,8 @@ fi
 echo "Request server version: $micro_version"
 if [[ "$micro_version" == "latest" ]]
 then
-  micro_version=$(curl --silent "https://api.github.com/repos/snowplow-incubator/snowplow-micro/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+  # See which tag the HTTP request is redirected to (can't use API due to unauthenticated rate limits)
+  micro_version=$(curl -I --silent https://github.com/snowplow-incubator/snowplow-micro/releases/latest | grep -iF location: | sed -E 's/^.*tag\/([^"]+)$/\1/')
 
   if [[ "$micro_version" == "" ]];
   then

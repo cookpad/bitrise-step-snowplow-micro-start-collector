@@ -66,12 +66,15 @@ done
 # Test the server
 echo "Testing the REST api..."
 curl --silent "http://$interface:$port/micro/all"
+printf "\n"
 
 # Export collector info
+echo "Exporting \$SNOWPLOW_MICRO_COLLECTOR_INTERFACE ($interface) and \$SNOWPLOW_MICRO_COLLECTOR_PORT ($port)"
 envman add --key SNOWPLOW_MICRO_COLLECTOR_INTERFACE --value "$interface"
 envman add --key SNOWPLOW_MICRO_COLLECTOR_PORT --value "$port"
 
 # Add $micro_dir to the cache
+echo "Adding $micro_dir to \$BITRISE_CACHE_INCLUDE_PATHS"
 cache_dir="${BITRISE_CACHE_INCLUDE_PATHS}
 ${micro_dir}"
 envman add --key BITRISE_CACHE_INCLUDE_PATHS --value "$cache_dir"

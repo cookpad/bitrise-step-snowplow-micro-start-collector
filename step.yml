@@ -1,0 +1,85 @@
+#
+# A couple of useful guides & docs:
+#
+# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
+# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
+# - Bitrise docs: http://devcenter.bitrise.io/
+# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
+
+title: |-
+  Snowplow Micro Start Collector
+summary: |
+  Starts a local Snowplow Micro server
+description: |
+  Snowplow Micro is built to enable users to run automated test suites to ensure that new releases of their websites, mobile apps and server-side applications do not break the tracking setup and Snowplow data collection.
+website: https://github.com/cookpad/bitrise-step-snowplow-micro-start-collector
+source_code_url: https://github.com/cookpad/bitrise-step-snowplow-micro-start-collector
+support_url: https://github.com/cookpad/bitrise-step-snowplow-micro-start-collector/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+# If this step should be available only for certain project types
+# just uncomment this `project_type_tags` section and include all the
+# project types supported by the step. If the step can be used for all
+# project types then you can just remove this section.
+# If no `project_type_tags` specified (or specified as an empty array)
+# that means the step can be used for any project type.
+# You can find more information about project type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+#
+# project_type_tags:
+#   - ios
+#   - macos
+#   - android
+#   - xamarin
+#   - react-native
+#   - cordova
+#   - ionic
+
+# Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
+# You can find more information about type tags in the Step Development Guideline:
+# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+type_tags:
+  - utility
+
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  apt_get:
+  - name: wget
+  - name: curl
+  brew:
+  - name: wget
+  - name: curl
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+inputs:
+  - micro_version: latest
+    opts:
+      title: Snowplow Micro version
+      summary: The version of Snowplow Micro to use. Specify 'latest' (the default) to always use the latest version or the name of a tag from the [available releases](https://github.com/snowplow-incubator/snowplow-micro/releases)
+  - collector_config:
+    opts:
+      is_required: true
+  - iglu:
+      opts:
+        is_required: true
+
+outputs:
+  - SNOWPLOW_MICRO_COLLECTOR_INTERFACE:
+    opts:
+      title: Snowplow Micro Collector Interface
+      summary: The interface that the collector is available on as specified in the collector_config (i.e 0.0.0.0).
+  - SNOWPLOW_MICRO_COLLECTOR_PORT:
+    opts:
+      title: Snowplow Micro Collector Port
+      summary: The port that the collector is available on as specified in the collector_config (i.e 9090).
+

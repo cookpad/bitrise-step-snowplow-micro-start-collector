@@ -16,6 +16,7 @@ then
 fi
 
 # Resolve the latest version if we need to
+echo "Request server version: $micro_version"
 if [[ "$micro_version" == "latest" ]]
 then
   micro_version=$(curl --silent "https://api.github.com/repos/snowplow-incubator/snowplow-micro/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')

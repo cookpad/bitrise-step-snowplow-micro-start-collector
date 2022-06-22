@@ -16,9 +16,17 @@ then
 fi
 
 # Resolve the latest version if we need to
-if [[ "$micro_version" == "latest" ]]; then
+if [[ "$micro_version" == "latest" ]]
+then
   micro_version=$(curl --silent "https://api.github.com/repos/snowplow-incubator/snowplow-micro/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-  echo "Latest version is $micro_version"
+
+  if [[ "$micro_version" == "" ]];
+  then
+    echo "Failed to detect latest version of Snowplow Micro"
+    exit 1
+  else
+    echo "Latest version is $micro_version"
+  fi
 fi
 
 # Create the directory for the server jar files if it doesn't already exist

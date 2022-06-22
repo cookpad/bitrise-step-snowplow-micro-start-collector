@@ -17,7 +17,7 @@ workflows:
     - path::./:
         title: Start Snowplow Micro Server
         inputs:
-        - micro_version: micro-1.3.0
+        # - micro_version: micro-1.3.0
         - collector_config: ../global-data-platform/snowplow/micro/snowplow-micro/micro.conf
         - iglu: ../global-data-platform/snowplow/micro/snowplow-micro/iglu.json
     - script:

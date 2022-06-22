@@ -53,9 +53,11 @@ deps:
   apt_get:
   - name: wget
   - name: curl
+  - name: netcat
   brew:
   - name: wget
   - name: curl
+  - name: netcat
 
 toolkit:
   bash:

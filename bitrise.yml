@@ -31,13 +31,8 @@ workflows:
         inputs:
         - content: |
             #!/bin/bash
-            if [ "$SNOWPLOW_MICRO_COLLECTOR_INTERFACE" != "0.0.0.0" ]; then
-              echo "SNOWPLOW_MICRO_COLLECTOR_INTERFACE does not match expected string 0.0.0.0 (got '$SNOWPLOW_MICRO_COLLECTOR_INTERFACE')"
-              exit 1
-            fi
-
-            if [ "$SNOWPLOW_MICRO_COLLECTOR_PORT" != "9091" ]; then
-              echo "SNOWPLOW_MICRO_COLLECTOR_PORT does not match expected string 9091 (got '$SNOWPLOW_MICRO_COLLECTOR_PORT')"
+            if [ "$SNOWPLOW_MICRO_COLLECTOR_URL" != "0.0.0.0" ]; then
+              echo "SNOWPLOW_MICRO_COLLECTOR_URL does not match expected string bla bla (got '$SNOWPLOW_MICRO_COLLECTOR_URL')"
               exit 1
             fi
 

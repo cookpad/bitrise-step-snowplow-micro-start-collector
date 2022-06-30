@@ -16,33 +16,6 @@ workflows:
     steps:
     - path::./:
         title: Start Snowplow Micro Server
-        inputs:
-        # - micro_version: micro-1.3.0
-        - collector_config: ../global-data-platform/snowplow/micro/snowplow-micro/micro.conf
-        - iglu: ../global-data-platform/snowplow/micro/snowplow-micro/iglu.json
-    - script:
-        title: Test Snowplow Micro Server
-        inputs:
-        - content: |
-            #!/bin/bash
-            curl "localhost:9091/micro/reset"
-    - script:
-        title: "Test exported variables"
-        inputs:
-        - content: |
-            #!/bin/bash
-            if [ "$SNOWPLOW_MICRO_COLLECTOR_INTERFACE" != "0.0.0.0" ]; then
-              echo "SNOWPLOW_MICRO_COLLECTOR_INTERFACE does not match expected string 0.0.0.0 (got '$SNOWPLOW_MICRO_COLLECTOR_INTERFACE')"
-              exit 1
-            fi
-
-            if [ "$SNOWPLOW_MICRO_COLLECTOR_PORT" != "9091" ]; then
-              echo "SNOWPLOW_MICRO_COLLECTOR_PORT does not match expected string 9091 (got '$SNOWPLOW_MICRO_COLLECTOR_PORT')"
-              exit 1
-            fi
-
-            echo "Cache: '$BITRISE_CACHE_INCLUDE_PATHS'"
-
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library

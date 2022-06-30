@@ -10,7 +10,7 @@
 title: |-
   Snowplow Micro Start Collector
 summary: |
-  Starts a local Snowplow Micro server
+  Rest the remote Snowplow Micro server
 description: |
   Snowplow Micro is built to enable users to run automated test suites to ensure that new releases of their websites, mobile apps and server-side applications do not break the tracking setup and Snowplow data collection.
 website: https://github.com/cookpad/bitrise-step-snowplow-micro-start-collector
@@ -62,25 +62,8 @@ toolkit:
   bash:
     entry_file: step.sh
 
-inputs:
-  - micro_version: latest
+output:
+  - CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL:
     opts:
-      title: Snowplow Micro version
-      summary: The version of Snowplow Micro to use. Specify 'latest' (the default) to always use the latest version or the name of a tag from the [available releases](https://github.com/snowplow-incubator/snowplow-micro/releases)
-  - collector_config:
-    opts:
-      is_required: true
-  - iglu:
-      opts:
-        is_required: true
-
-outputs:
-  - SNOWPLOW_MICRO_COLLECTOR_INTERFACE:
-    opts:
-      title: Snowplow Micro Collector Interface
-      summary: The interface that the collector is available on as specified in the collector_config (i.e 0.0.0.0).
-  - SNOWPLOW_MICRO_COLLECTOR_PORT:
-    opts:
-      title: Snowplow Micro Collector Port
-      summary: The port that the collector is available on as specified in the collector_config (i.e 9090).
-
+      title: Snowplow Micro Collector URL
+      summary: The Network Endpoint URL that the collector is available on the k8s.

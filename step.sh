@@ -3,16 +3,9 @@ set -e
 
 schema="https"
 interface="snowplow-micro-ios.production.data.global-services.ckpd.co"
-port="80"
-
-# Wait for server to start
-echo "Waiting for the server to become available at $interface:$port..."
-while ! nc -z "$interface" "$port"; do
-  sleep 1 # TODO: Add a timeout mechanism?
-done
 
 # Test the server
-echo "Resting the Snowplow Microcollector at $httpschema://$interface:$port/micro/reset..."
+echo "Resting the Snowplow Microcollector at $httpschema://$interface/micro/reset..."
 result=$(curl --silent "$httpschema://$interface:$port/micro/reset")
 
 # Parse the results
@@ -26,7 +19,7 @@ then
 fi
 
 # Export collector info
-echo "Exporting \$CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL $httpschema://$interface:$port"
+echo "Exporting \$CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL $httpschema://$interface"
 envman add --key CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL --value "$httpschema://$interface:$port"
 
 # Add $micro_dir to the cache

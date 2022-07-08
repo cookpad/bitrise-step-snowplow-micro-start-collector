@@ -2,8 +2,8 @@
 set -e
 
 schema="https"
-interface="staging-collector-snowplow-micro-ios-uitest.cookpad.com/data"
-port="9090"
+interface="snowplow-micro-ios.production.data.global-services.ckpd.co"
+port="80"
 
 # Wait for server to start
 echo "Waiting for the server to become available at $interface:$port..."
@@ -26,8 +26,8 @@ then
 fi
 
 # Export collector info
-echo "Exporting \$SNOWPLOW_MICRO_COLLECTOR_URL $httpschema://$interface:$port"
-envman add --key SNOWPLOW_MICRO_COLLECTOR_URL --value "$httpschema://$interface:$port"
+echo "Exporting \$CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL $httpschema://$interface:$port"
+envman add --key CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL --value "$httpschema://$interface:$port"
 
 # Add $micro_dir to the cache
 echo "Adding $micro_dir to \$BITRISE_CACHE_INCLUDE_PATHS"

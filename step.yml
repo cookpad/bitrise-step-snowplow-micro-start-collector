@@ -63,7 +63,7 @@ toolkit:
     entry_file: step.sh
 
 output:
-  - SNOWPLOW_MICRO_COLLECTOR_URL:
+  - CP_BITRISE_SNOWPLOW_MICRO_COLLECTOR_URL:
     opts:
       title: Snowplow Micro Collector URL
       summary: The Network Endpoint URL that the collector is available on the k8s.

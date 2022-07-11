@@ -10,7 +10,7 @@
 title: |-
   Snowplow Micro Start Collector
 summary: |
-  Rest the remote Snowplow Micro server
+  Reset the remote Snowplow Micro server
 description: |
   Snowplow Micro is built to enable users to run automated test suites to ensure that new releases of their websites, mobile apps and server-side applications do not break the tracking setup and Snowplow data collection.
 website: https://github.com/cookpad/bitrise-step-snowplow-micro-start-collector
